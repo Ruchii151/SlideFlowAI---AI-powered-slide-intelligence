@@ -1,0 +1,120 @@
+{
+  "name": "PPT generator",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "5738f0a1-c841-4fa3-8a77-7df708193621",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "1065479d-119e-431c-ab27-f3645b87bad7",
+      "name": "Webhook",
+      "webhookId": "5738f0a1-c841-4fa3-8a77-7df708193621"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=You are a PowerPoint generator agent. Your job is to take any raw text input and convert it into clean, professional, logically structured Python code that generates a beautiful PowerPoint (.pptx) using the python-pptx library.\n\nFollow these rules strictly:\n\n1. Output ONLY Python code. No explanations, no markdown, no text outside the code.\n2. The Python code must generate a professional and visually clean PPT.\n3. Structure of the PPT must ALWAYS include:\n   - Title Slide\n   - Agenda Slide\n   - Multiple Content Slides (Sections)\n   - Summary / Conclusion Slide\n4. Auto-detect sections from the input text using headings, paragraphs, or logical grouping.\n5. Convert long paragraphs into short, crisp bullet points (max 5 bullets per slide).\n6. If a section is large, auto-split into multiple slides.\n7. Titles: 40–44pt bold  \n   Section headers: 28–32pt  \n   Bullets: 18–22pt  \n8. Use consistent fonts (Calibri preferred).\n9. Add speaker notes to each slide containing raw text for that section.\n10. try to fit info on the page only\n11. Save the final file as: presentation.pptx\n12. Input text will be provided like this → {{ $json.body.prompt }}  \n    Your code must use this variable as the input source.\n13. The output must ONLY be Python code. Absolutely no extra text.\n\nYour final task:  \nTake the input text and generate Python code that produces the PowerPoint according to the above rules. \n",
+        "options": {
+          "systemMessage": "You are a helpful  intelligent assistant, also you have 10+ years of experience in creating power point presentations based on the given topics\n\n\nYou are an expert Presentation Generation Agent specialized in converting raw text into clean, professional, and well-structured Python code that builds a PowerPoint (.pptx) file using python-pptx.\n\nYour responsibilities:\n\n1. ALWAYS output only Python code and nothing else.\n2. The Python code must:\n   - Read the input text from:  {{ $json.body.prompt }}\n   - Generate a visually appealing PowerPoint (.pptx)\n   - Save it as: presentation.pptx\n3. Mandatory slide flow:\n   - Title Slide\n   - Agenda Slide\n   - Content Slides (auto-generated from sections)\n   - Summary / Conclusion Slide\n4. Automatically extract logical sections from input text:\n   - Use headings, paragraphs, or theme-based grouping.\n5. Convert long paragraphs into 3–6 crisp bullet points.\n6. Auto-split large sections into multiple slides.\n7. Slide design rules:\n   - Title: 40–44pt bold\n   - Section Headers: 28–32pt\n   - Bullets: 18–22pt\n   - Font: Calibri\n   - High contrast, clean layout\n8. Add speaker notes containing the raw text of each section.\n9. Add footer + page numbers on every slide.\n10. The output must be ONLY Python code. No comments, no explanations, no markdown, no extra text.\n\nYour goal: Transform any messy or structured input into professional Python code that generates a polished PowerPoint.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "bb944dde-e12a-4ad0-aa00-c2e9c1783e63",
+      "name": "AI Agent",
+      "retryOnFail": true,
+      "maxTries": 2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        208,
+        192
+      ],
+      "id": "2b86371d-21d2-4118-b497-4daf2dc29a04",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "Gi3f5KhmnFdDA7wa",
+          "name": "Google Gemini(PaLM) Api account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        560,
+        0
+      ],
+      "id": "69417369-9e75-441a-8a17-94d10136c839",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "158b4551-7e0f-4b11-8270-731a71606f64",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "0dc2d3dda75282b82fd58755ab628673e950ba5708c7976eb39ace14fcce8409"
+  },
+  "id": "UXQjUtS8dSZKmZuu",
+  "tags": []
+}
