@@ -1,6 +1,6 @@
-# Slide-Genius---AI-powered-slide-intelligence
+# SlideFlowAI---AI-powered-slide-intelligence
 
-> **Transform ideas into polished presentations instantly.** Slide Genius leverages agentic AI workflows to convert raw text into professional, structured PowerPoint presentations in seconds.
+> **Transform ideas into polished presentations instantly.** SlideFlowAI leverages agentic AI workflows to convert raw text into professional, structured PowerPoint presentations in seconds.
 
 **Powered by:** Streamlit • python-pptx • n8n • Google Gemini • Automation-First Design
 
