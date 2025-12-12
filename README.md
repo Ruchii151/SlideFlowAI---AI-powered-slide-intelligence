@@ -42,41 +42,41 @@ Code Generation   │ Agentic Prompt → Python Code → Execution
 ```
 ┌──────────────────────────────────────────────────────────┐
 │  1. USER INPUT                                           │
-│  Streamlit UI: Topic description + Audience type        │
+│  Streamlit UI: Topic description + Audience type         │
 └────────────────┬─────────────────────────────────────────┘
                  │
                  ▼
 ┌──────────────────────────────────────────────────────────┐
 │  2. WEBHOOK TRIGGER (n8n)                                │
-│  POST /webhook-test/{webhook_id} with prompt            │
+│  POST /webhook-test/{webhook_id} with prompt             │
 └────────────────┬─────────────────────────────────────────┘
                  │
                  ▼
 ┌──────────────────────────────────────────────────────────┐
-│  3. AGENTIC LLM (Google Gemini)                           │
-│  • Analyzes topic & structure                           │
-│  • Generates clean Python code                          │
+│  3. AGENTIC LLM (Google Gemini)                          │
+│  • Analyzes topic & structure                            │
+│  • Generates clean Python code                           │ 
 │  • Ensures layout compliance (no overlaps, max 5 bullets)│
 └────────────────┬─────────────────────────────────────────┘
                  │
                  ▼
 ┌──────────────────────────────────────────────────────────┐
 │  4. CODE GENERATION & EXECUTION                          │
-│  • Save generated code → app1.py                        │
-│  • Execute: python app1.py                              │
-│  • Output: presentation.pptx                            │
+│  • Save generated code → app1.py                         │
+│  • Execute: python app1.py                               │
+│  • Output: presentation.pptx                             │
 └────────────────┬─────────────────────────────────────────┘
                  │
                  ▼
 ┌──────────────────────────────────────────────────────────┐
 │  5. WEBHOOK RESPONSE                                     │
-│  Return generated code + status to Streamlit            │
+│  Return generated code + status to Streamlit             │
 └────────────────┬─────────────────────────────────────────┘
                  │
                  ▼
 ┌──────────────────────────────────────────────────────────┐
 │  6. DOWNLOAD & PRESENT                                   │
-│  User downloads .pptx → Edit/Present as needed         │
+│  User downloads .pptx → Edit/Present as needed           │
 └──────────────────────────────────────────────────────────┘
 ```
 
