@@ -105,7 +105,7 @@ SlideFlow-AI/
 
 **1. Clone & Setup**
 ```bash
-git clone https://github.com/shrutikakapade/SlideFlow-AI.git
+git clone https://github.com/Ruchii151/SlideFlow-AI.git
 cd SlideFlow-AI
 pip install -r req.txt
 ```
