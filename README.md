@@ -6,7 +6,7 @@
 
 ## 🌟 Overview
 
-Slide Genius is a **production-ready automation tool** that bridges natural language and presentation creation. Simply describe your topic, audience, and style—the system handles slide structure, formatting, bullet optimization, and PPTX generation without manual intervention.
+SlideFlowAI is a **production-ready automation tool** that bridges natural language and presentation creation. Simply describe your topic, audience, and style—the system handles slide structure, formatting, bullet optimization, and PPTX generation without manual intervention.
 
 **Perfect for:**
 - Content creators & educators (rapid curriculum design)
